@@ -29,12 +29,12 @@ The project uses the *metaflow-extensions-template* model to implement a @nuvola
 
 ## Scope
 
-The implementation aims to demostrate that using the Nuvolaris *Metaflow* extesion it possible to
+The implementation aims to demostrate that using the Nuvolaris *Metaflow* extension it possible to
 
 * Implement a *@nuvolaris* decorator to run arbitrary python code annotated as a Metaflow step inside a Nuvolaris OpenWhisk runtime
 * Scale easily the number of ML Tasks
 * Possibility to execute long running job as serverless functions (@TODO)
-* Easily customize CPU, MEMORY, TIMEOUT per @step using specific annotation (@TODO)
+* Easily customize CPU, MEMORY, TIMEOUT per @step using specific @nuvolaris attributes (@TODO)
 
 ## Project structure
 

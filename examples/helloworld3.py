@@ -18,8 +18,6 @@
 
 from metaflow import FlowSpec, step, nuvolaris
 
-from metaflow import FlowSpec, step
-
 class ForeachFlow(FlowSpec):
 
     @step

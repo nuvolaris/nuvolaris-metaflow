@@ -82,7 +82,7 @@ class NuvolarisJob(object):
     def create(self):
         # Will deploy the function packages as openwhisk action
         client = self._client.get()
-        self._result = client.deploy_action(self._action_name,"examples/mf_sample_action.py", self._namespace)
+        self._result = client.deploy_action(self._action_name,self._namespace)
         return self
 
     def execute(self):

@@ -139,7 +139,7 @@ class NuvolarisDecorator(StepDecorator):
             # code locally.
             cli_args.commands = ["nuvolaris", "step"]
             cli_args.command_args.append(self.package_sha)
-            cli_args.command_args.append(self.package_url)            
+            cli_args.command_args.append(self.package_url)        
 
             # --namespace is used to specify Metaflow namespace (a different concept from nuvolaris namespace).
             for k, v in self.attributes.items():

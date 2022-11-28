@@ -56,7 +56,7 @@ class NuvolarisEnvironment(object):
             "after 6 tries. Exiting...' && exit 1; "
             "fi" % code_package_url,
             "TAR_OPTIONS='--warning=no-timestamp' tar xf job.tar",
-            "mflog 'Task is starting.'",
+            "mflog 'Task is starting.'"
         ]
         return cmds
 

@@ -55,7 +55,7 @@ class WskCli(object):
         def get_auth(self):
             return {'username':NUVOLARIS_DEFAULT_API_USER, 'password':NUVOLARIS_DEFAULT_API_AUTH}
             
-        def deploy_action(self, action_name, package_url, namespace):
+        def deploy_action(self, action_name, namespace):
             # Deploy the action using the rest api            
             params = {
                     "namespace":namespace,

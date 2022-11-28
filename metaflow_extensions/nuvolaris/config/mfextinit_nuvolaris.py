@@ -35,7 +35,7 @@ DEFAULT_DATASTORE = "s3"
 DATASTORE_SYSROOT_S3 = "s3://mflowtest"
 
 # CUSTOM ACTION IMAGE LAUNCHER
-NUVOLARIS_METAFLOW_IMAGE = "ghcr.io/nuvolaris/nuvolaris-metaflow:0.2.1-trinity.22062010"
+NUVOLARIS_METAFLOW_IMAGE = "ghcr.io/nuvolaris/nuvolaris-metaflow:3e62859"
 
 
 

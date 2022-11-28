@@ -27,10 +27,11 @@ def main(args):
         for k,v in args['environment_variables'].items():
             os.environ[k]=v
 
-    if ( args['command']) :        
+    if ( args['command']) :
+        print(args['command'])
         cp = subprocess.run(args['command'])
         return { 
-                "mf_process_status": "success",
+                "mf_process_status": cp.returncode == 0 and "success" or "failed",
                 "mf_process_ret_code": cp.returncode,
                 "mf_process_stderr": cp.stderr,
                 "mf_process_stdout": cp.stdout
