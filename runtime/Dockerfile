@@ -51,7 +51,8 @@ RUN pip3 install --upgrade pip six wheel &&\
 # Install all the common modules used by metaflow
 RUN pip install requests -qqq\
     pip install awscli boto3\
-    pip install azure-identity azure-storage-blob simple-azure-blob-downloader -qqq
+    pip install azure-identity azure-storage-blob simple-azure-blob-downloader -qqq\
+    pip install scikit-learn sagemaker
 
 RUN mkdir -p /action
 WORKDIR /

@@ -44,7 +44,12 @@ tasks:
   run3:
     cmds:
       - python3 examples/helloworld3.py run
-    silent: true            
+    silent: true   
+
+  run-ml:
+    cmds:
+      - python3 examples/ml-example.py run
+    silent: true                
   
   # Docker image
   docker-build:
