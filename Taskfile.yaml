@@ -49,7 +49,9 @@ tasks:
   run-ml:
     cmds:
       - python3 examples/ml-example.py run
-    silent: true                
+    silent: true
+
+  watch: watch kubectl -n nuvolaris get deploy,pod,service,cronjob 
   
   # Docker image
   docker-build:

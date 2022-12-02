@@ -19,7 +19,8 @@
 	"image": "ghcr.io/nuvolaris/nuvolaris-devkit:0.2.0-trinity.22042718",
 	//"build": { "dockerfile": "Dockerfile" },
 	"mounts": [
-		"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind"
+		"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
+		"source=/Users/franz/Data/dev/nuvolaris/metaflow,target=/workspaces/metaflow,type=bind,consistency=cached"
 	],
 	"remoteUser": "nuvolaris",
 	"overrideCommand": false,

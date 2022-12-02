@@ -61,7 +61,7 @@ class WskCli(object):
                     "namespace":namespace,
                     "name":action_name,
                     "exec":{"kind":"blackbox","code":self._nuv_action_template,"image":NUVOLARIS_METAFLOW_IMAGE},
-                    #"limits": {"timeout": 120000,"memory": 1024,"logs": 10,"concurrency": 1}
+                    "limits": {"timeout": 120000,"memory": 256,"logs": 10, "concurrency": 1}
                     }
             url = self.build_action_url(NUVOLARIS_DEFAULT_API_URL,action_name,namespace)
             response = req.put(f"{url}?overwrite=true", auth=(self._ow_auth['username'],self._ow_auth['password']), headers=self._headers, data=json.dumps(params))
