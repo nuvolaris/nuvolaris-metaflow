@@ -86,13 +86,13 @@ class TrainingExampleFlow(FlowSpec):
 
         self.next(self.a, self.b)        
     
-    @nuvolaris(namespace="nuvolaris", action="train_a")
+    @nuvolaris(namespace="nuvolaris", action="train_a", timeout=120000)
     @step
     def a(self):
         self.mse, self.r2 = self._train_from__dataset(0.10,42)
         self.next(self.join)
 
-    @nuvolaris(namespace="nuvolaris", action="train_b")
+    @nuvolaris(namespace="nuvolaris", action="train_b", timeout=120000)
     @step
     def b(self):
         self.mse, self.r2 = self._train_from__dataset(0.30,42)

@@ -160,7 +160,9 @@ class Nuvolaris(object):
         step_cli,
         run_time_limit,
         namespace=None,
-        action=None,      
+        action=None,
+        memory=None,
+        timeout=None,      
         env={},
     ):
 
@@ -170,6 +172,8 @@ class Nuvolaris(object):
                 generate_name="t-",
                 namespace=namespace,
                 action=action,
+                memory=memory,
+                timeout=timeout,
                 command=self._command(
                     flow_name=flow_name,
                     run_id=run_id,

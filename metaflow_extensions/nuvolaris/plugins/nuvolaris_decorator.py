@@ -51,13 +51,19 @@ class NuvolarisDecorator(StepDecorator):
     namespace : str
         Nuvolaris OpenWhisk namespace to use when launching action in Nuvolaris. If
         not specified, the value of `METAFLOW_NUVOLARIS_NAMESPACE` is used
-        from Metaflow configuration.        
+        from Metaflow configuration.
+    timeout : number
+       Nuvolaris OpenWhisk action timeout. Default to 60000 milliseconds
+    memory : number
+       Nuvolaris OpenWhisk action memory in megabytes. Default to 256 megabytes
     """
 
     name = "nuvolaris"
     defaults = {
         "action":None,
-        "namespace": None
+        "namespace": None,
+        "timeout": 60000,
+        "memory": 256
     }
     package_url = None
     package_sha = None
@@ -81,6 +87,12 @@ class NuvolarisDecorator(StepDecorator):
 
         if not self.attributes["namespace"]:
             self.attributes["namespace"] = NUVOLARIS_DEFAULT_NAMESPACE          
+
+        if not self.attributes["timeout"]:
+            self.attributes["timeout"] = defaults["timeout"]
+
+        if not self.attributes["memory"]:
+            self.attributes["memory"] = defaults["memory"]                         
 
         # Set internal state.
         self.logger = logger
@@ -150,6 +162,8 @@ class NuvolarisDecorator(StepDecorator):
 
             cli_args.command_options["run-time-limit"] = self.run_time_limit        
             cli_args.command_options["action"] = self.action
+            cli_args.command_options["memory"] = self.attributes["memory"]
+            cli_args.command_options["timeout"] = self.attributes["timeout"]           
             cli_args.entrypoint[0] = sys.executable
 
     def task_pre_step(

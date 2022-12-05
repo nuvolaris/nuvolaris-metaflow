@@ -78,11 +78,13 @@ class NuvolarisJob(object):
         self._kwargs = kwargs
         self._action_name = self._kwargs["action"]
         self._namespace = self._kwargs["namespace"]
+        self._timeout = self._kwargs["timeout"]
+        self._memory = self._kwargs["memory"]
 
     def create(self):
         # Will deploy the function packages as openwhisk action
         client = self._client.get()
-        self._result = client.deploy_action(self._action_name,self._namespace)
+        self._result = client.deploy_action(self._action_name,self._namespace, self._memory, self._timeout)
         return self
 
     def execute(self):
