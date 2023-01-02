@@ -24,18 +24,18 @@
 #
 #            The entries below are simple examples
 ###
-NUVOLARIS_DEFAULT_API_URL = "http://localhost:3233/api/v1/namespaces"
+NUVOLARIS_DEFAULT_API_URL = "https://3.88.57.54.nip.io/api/v1/namespaces"
 NUVOLARIS_DEFAULT_NAMESPACE = "nuvolaris"
 NUVOLARIS_DEFAULT_API_USER = "cbd68075-dac2-475e-8c07-d62a30c7e683"
-NUVOLARIS_DEFAULT_API_AUTH = "123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP"
+NUVOLARIS_DEFAULT_API_AUTH = "123zO3xKCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP"
 
 
 # EXAMPLE: Force s3 datastore and the bucket to use (testing nuvolaris based action)
 DEFAULT_DATASTORE = "s3"
-DATASTORE_SYSROOT_S3 = "s3://mflowtest"
+DATASTORE_SYSROOT_S3 = "s3://mlflowtest2"
 
 # CUSTOM ACTION IMAGE LAUNCHER
-NUVOLARIS_METAFLOW_IMAGE = "ghcr.io/nuvolaris/nuvolaris-metaflow:2530f91"
+NUVOLARIS_METAFLOW_IMAGE = "ghcr.io/nuvolaris/nuvolaris-metaflow:dcf312c"
 
 
 

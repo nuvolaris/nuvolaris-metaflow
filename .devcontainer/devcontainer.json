@@ -20,7 +20,7 @@
 	//"build": { "dockerfile": "Dockerfile" },
 	"mounts": [
 		"source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind",
-		"source=/Users/franz/Data/dev/nuvolaris/metaflow,target=/workspaces/metaflow,type=bind,consistency=cached"
+		"source=/home/ubuntu/metaflow,target=/workspaces/metaflow,type=bind,consistency=cached"
 	],
 	"remoteUser": "nuvolaris",
 	"overrideCommand": false,
