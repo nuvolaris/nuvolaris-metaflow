@@ -40,7 +40,7 @@ class NuvolarisApiException(Exception):
 
 # Implements truncated exponential backoff from
 # https://cloud.google.com/storage/docs/retry-strategy#exponential-backoff
-def nuv_retry(deadline_seconds=240, max_backoff=5):
+def nuv_retry(deadline_seconds=580, max_backoff=5):
     def decorator(function):
         from functools import wraps
 
