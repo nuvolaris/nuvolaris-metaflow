@@ -42,6 +42,7 @@ class NuvolarisEnvironment(object):
         cmds = [
             BASH_MFLOG,
             "mflog 'Setting up task environment.'",
+            "if [ -d metaflow ]; then rm -Rf metaflow; fi",
             "mkdir metaflow",
             "cd metaflow",
             "mkdir .metaflow",  # mute local datastore creation log
