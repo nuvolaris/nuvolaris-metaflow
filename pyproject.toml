@@ -19,7 +19,7 @@
 name = "nuvolaris_metaflow"
 version = "0.1.0"
 description = "Nuvolaris Metaflow Plugin"
-authors = ["Francesco Timperi Tiberi <francesco.timperi@gmail.com>"]
+authors = ["Francesco Timperi Tiberi <francesco@nuvolaris.io>"]
 packages = [
     { include = "metaflow_extensions" },
     { include = "metaflow_extensions/**/*.py" },
@@ -29,7 +29,7 @@ packages = [
 python = "^3.9"
 scikit-learn = "0.24.1"
 sagemaker = "2.59.8"
-metaflow = { path = "/home/ubuntu/metaflow", develop = true }
+metaflow = { path = "../metaflow", develop = true }
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.31.0"
