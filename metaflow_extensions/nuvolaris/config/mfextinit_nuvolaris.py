@@ -24,10 +24,10 @@
 #
 #            The entries below are simple examples
 ###
-NUVOLARIS_DEFAULT_API_URL = "https://44.203.144.96.nip.io/api/v1/namespaces"
+NUVOLARIS_DEFAULT_API_URL = "http://localhost:3233/api/v1/namespaces"
 NUVOLARIS_DEFAULT_NAMESPACE = "nuvolaris"
 NUVOLARIS_DEFAULT_API_USER = "cbd68075-dac2-475e-8c07-d62a30c7e683"
-NUVOLARIS_DEFAULT_API_AUTH = "123zO3xKCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP"
+NUVOLARIS_DEFAULT_API_AUTH = "123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP"
 
 
 # EXAMPLE: Force s3 datastore and the bucket to use (testing nuvolaris based action)
