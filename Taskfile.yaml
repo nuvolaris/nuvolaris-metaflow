@@ -28,7 +28,7 @@ env:
 tasks:
   install:
     cmds:
-      - pip install .
+      - python3 -m pip install .
     silent: true
 
   run:
@@ -44,7 +44,14 @@ tasks:
   run3:
     cmds:
       - python3 examples/helloworld3.py run
-    silent: true            
+    silent: true   
+
+  run-ml:
+    cmds:
+      - python3 examples/ml-example.py run
+    silent: true
+
+  watch: watch kubectl -n nuvolaris get deploy,pod,service,cronjob 
   
   # Docker image
   docker-build:
@@ -55,3 +62,8 @@ tasks:
     - task: docker-build
     - > 
       kind load docker-image {{.NUV_MF_PYTHON_IMAGE}}:{{.NUV_MF_PYTHON_TAG}} --name=nuvolaris
+
+  build-and-push:
+    - task: docker-build 
+    - docker push {{.NUV_MF_PYTHON_IMAGE}}:{{.NUV_MF_PYTHON_TAG}}
+    

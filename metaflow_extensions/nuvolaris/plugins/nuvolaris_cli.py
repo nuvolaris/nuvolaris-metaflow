@@ -76,6 +76,8 @@ def nuvolaris():
     help="Namespace for Nuvolaris action.",
 )
 @click.option("--action", default=None, help="Name of the nuvolaris action to be deployed.")
+@click.option("--memory", default=256, help="Memory that nuvolaris should assign in megabytes. Default to 256")
+@click.option("--timeout", default=60000, help="Nuvoalris deployed action timeout. Deafult to 60000 milliseconds")
 @click.option("--namespace", default=None, help="Passed to the top-level 'step'.")
 @click.pass_context
 def step(
@@ -87,6 +89,8 @@ def step(
     nuv_namespace=None,
     run_time_limit=None,
     action=None,
+    memory=None,
+    timeout=None,
     **kwargs
 ):
     def echo(msg, stream="stderr", job_id=None):
@@ -183,6 +187,8 @@ def step(
                 run_time_limit=run_time_limit,
                 namespace=nuv_namespace,
                 action=action,
+                memory=memory,
+                timeout=timeout,
                 env=env
             )
     except Exception as e:

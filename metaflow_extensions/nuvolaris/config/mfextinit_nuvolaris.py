@@ -24,20 +24,20 @@
 #
 #            The entries below are simple examples
 ###
-NUVOLARIS_DEFAULT_API_URL = "http://localhost:3233/api/v1/namespaces"
-NUVOLARIS_DEFAULT_NAMESPACE = "nuvolaris"
-NUVOLARIS_DEFAULT_API_USER = "cbd68075-dac2-475e-8c07-d62a30c7e683"
-NUVOLARIS_DEFAULT_API_AUTH = "123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP"
 
+import metaflow.metaflow_config as cfg
+
+NUVOLARIS_DEFAULT_API_URL =  cfg.from_conf("NUVOLARIS_API_URL", "http://localhost:3233/api/v1/namespaces")
+NUVOLARIS_DEFAULT_NAMESPACE = cfg.from_conf("NUVOLARIS_NAMESPACE","nuvolaris")
+NUVOLARIS_DEFAULT_API_USER = cfg.from_conf("NUVOLARIS_API_USER","cbd68075-dac2-475e-8c07-d62a30c7e683")
+NUVOLARIS_DEFAULT_API_AUTH = cfg.from_conf("NUVOLARIS_API_AUTH","123zO3xZCLrMN6v2BKK1dXYFpXlPkccOFqm12CdAsMgRU4VrNZ9lyGVCGuMDGIwP")
 
 # EXAMPLE: Force s3 datastore and the bucket to use (testing nuvolaris based action)
 DEFAULT_DATASTORE = "s3"
-DATASTORE_SYSROOT_S3 = "s3://mflowtest"
+DATASTORE_SYSROOT_S3 = cfg.from_conf("NUVOLARIS_DATASTORE_SYSROOT_S3","s3://mlflowtest1234566789")
 
 # CUSTOM ACTION IMAGE LAUNCHER
-NUVOLARIS_METAFLOW_IMAGE = "ghcr.io/nuvolaris/nuvolaris-metaflow:3e62859"
-
-
+NUVOLARIS_METAFLOW_IMAGE = cfg.from_conf("NUVOLARIS_METAFLOW_RUNTIME_IMAGE","ghcr.io/nuvolaris/nuvolaris-metaflow:dcf312c")
 
 ###
 # CONFIGURE: You can override any conda dependencies when a Conda environment is created

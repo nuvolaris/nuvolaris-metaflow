@@ -40,7 +40,7 @@ class NuvolarisApiException(Exception):
 
 # Implements truncated exponential backoff from
 # https://cloud.google.com/storage/docs/retry-strategy#exponential-backoff
-def nuv_retry(deadline_seconds=60, max_backoff=32):
+def nuv_retry(deadline_seconds=86400, max_backoff=5):
     def decorator(function):
         from functools import wraps
 
@@ -78,11 +78,13 @@ class NuvolarisJob(object):
         self._kwargs = kwargs
         self._action_name = self._kwargs["action"]
         self._namespace = self._kwargs["namespace"]
+        self._timeout = self._kwargs["timeout"]
+        self._memory = self._kwargs["memory"]
 
     def create(self):
         # Will deploy the function packages as openwhisk action
         client = self._client.get()
-        self._result = client.deploy_action(self._action_name,self._namespace)
+        self._result = client.deploy_action(self._action_name,self._namespace, self._memory, self._timeout)
         return self
 
     def execute(self):
@@ -167,7 +169,7 @@ class RunningJob(object):
         client = self._client.get()
         print(f"checking completion of nuvolaris activation {self._id}")
         try:
-            response = client.get_activation_detail(activation_id=self._id, namespace=self._namespace)            
+            response = client.get_activation_detail(activation_id=self._id, namespace=self._namespace)                    
             if (response.status_code == 404):
                 # 404 means that the activation is not yet finished, i.e the job is still running and OW does not returns any information
                 raise NuvolarisApiException(status=404, message="Activation is not completed yet")

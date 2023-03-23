@@ -137,10 +137,10 @@ class Nuvolaris(object):
         cmd_str += "c=$?; %s; exit $c" % BASH_SAVE_LOGS
         # For supporting sandboxes, ensure that a custom script is executed before
         # anything else is executed. The script is passed in as an env var.
-        cmd_str = (
-            '${METAFLOW_INIT_SCRIPT:+eval \\"${METAFLOW_INIT_SCRIPT}\\"} && %s'
-            % cmd_str
-        )
+        #cmd_str = (
+        #    '${METAFLOW_INIT_SCRIPT:+eval \\"${METAFLOW_INIT_SCRIPT}\\"} && %s'
+        #    % cmd_str
+        #)
         return shlex.split('bash -c "%s"' % cmd_str)
 
     def launch_job(self, **kwargs):
@@ -160,7 +160,9 @@ class Nuvolaris(object):
         step_cli,
         run_time_limit,
         namespace=None,
-        action=None,      
+        action=None,
+        memory=None,
+        timeout=None,      
         env={},
     ):
 
@@ -170,6 +172,8 @@ class Nuvolaris(object):
                 generate_name="t-",
                 namespace=namespace,
                 action=action,
+                memory=memory,
+                timeout=timeout,
                 command=self._command(
                     flow_name=flow_name,
                     run_id=run_id,
@@ -214,15 +218,15 @@ class Nuvolaris(object):
             .environment_variable(
                 "METAFLOW_INIT_SCRIPT", KUBERNETES_SANDBOX_INIT_SCRIPT
             ) 
-            .environment_variable(
-                "METAFLOW_DEBUG_S3CLIENT", "1"
-            )  
-            .environment_variable(
-                "METAFLOW_DEBUG_SUBCOMMAND", "1"
-            )
-            .environment_variable(
-                "METAFLOW_DEBUG_SIDECAR", "1"
-            )                                            
+            #.environment_variable(
+            #    "METAFLOW_DEBUG_S3CLIENT", "1"
+            #)  
+            #.environment_variable(
+            #    "METAFLOW_DEBUG_SUBCOMMAND", "1"
+            #)
+            #.environment_variable(
+            #    "METAFLOW_DEBUG_SIDECAR", "1"
+            #)                                            
             # Skip setting METAFLOW_DATASTORE_SYSROOT_LOCAL because metadata sync
             # between the local user instance and the remote Nuvolaris Kubernetes pod
             # assumes metadata is stored in DATASTORE_LOCAL_DIR on the Nuvolaris Kubernetes
