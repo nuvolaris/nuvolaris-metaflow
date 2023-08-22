@@ -33,7 +33,7 @@ class ForeachFlow(FlowSpec):
                        'Rogue']
         self.next(self.a, foreach='titles')
 
-    @nuvolaris(namespace="nuvolaris", action="each", memory=256, timeout=120000)
+    @nuvolaris(namespace="nuvolaris", action="each", memory=512, timeout=120000)
     @step
     def a(self):
         self.title = '%s processed' % self.input

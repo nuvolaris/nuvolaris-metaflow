@@ -218,6 +218,9 @@ class Nuvolaris(object):
             .environment_variable(
                 "METAFLOW_INIT_SCRIPT", KUBERNETES_SANDBOX_INIT_SCRIPT
             ) 
+            .environment_variable(
+                "NUVOLARIS_DATASTORE_SYSROOT_S3", DATASTORE_SYSROOT_S3
+            ) 
             #.environment_variable(
             #    "METAFLOW_DEBUG_S3CLIENT", "1"
             #)  

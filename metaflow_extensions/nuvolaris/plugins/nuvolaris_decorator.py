@@ -29,7 +29,8 @@ from metaflow.metadata import MetaDatum
 from metaflow.metadata.util import sync_local_metadata_to_datastore
 from metaflow.metaflow_config import (
     DATASTORE_LOCAL_DIR,
-    NUVOLARIS_DEFAULT_NAMESPACE
+    NUVOLARIS_DEFAULT_NAMESPACE,
+    DATASTORE_SYSROOT_S3
 )
 from metaflow.plugins.timeout_decorator import get_run_time_limit_for_task
 from metaflow.sidecar import Sidecar
