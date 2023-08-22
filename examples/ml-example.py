@@ -32,6 +32,7 @@ class TrainingExampleFlow(FlowSpec):
     _s3_tmp_folder =  DATASTORE_SYSROOT_S3 + "/tmp"
 
     def _train_from__dataset(self, test_size=0.30, random_state=42):
+        print(f"using s3 bucket {self._s3_tmp_folder}")
         Xs = []
         Ys = []
 

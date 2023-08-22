@@ -34,10 +34,10 @@ NUVOLARIS_DEFAULT_API_AUTH = cfg.from_conf("NUVOLARIS_API_AUTH","123zO3xZCLrMN6v
 
 # EXAMPLE: Force s3 datastore and the bucket to use (testing nuvolaris based action)
 DEFAULT_DATASTORE = "s3"
-DATASTORE_SYSROOT_S3 = cfg.from_conf("NUVOLARIS_DATASTORE_SYSROOT_S3","s3://mlflowtest1234566789")
+DATASTORE_SYSROOT_S3 = cfg.from_conf("NUVOLARIS_DATASTORE_SYSROOT_S3","s3://mlflowtest123456")
 
 # CUSTOM ACTION IMAGE LAUNCHER
-NUVOLARIS_METAFLOW_IMAGE = cfg.from_conf("NUVOLARIS_METAFLOW_RUNTIME_IMAGE","ghcr.io/nuvolaris/nuvolaris-metaflow:dcf312c")
+NUVOLARIS_METAFLOW_IMAGE = cfg.from_conf("NUVOLARIS_METAFLOW_RUNTIME_IMAGE","ghcr.io/nuvolaris/nuvolaris-metaflow:a8b408e")
 
 ###
 # CONFIGURE: You can override any conda dependencies when a Conda environment is created
