@@ -133,7 +133,7 @@ class Nuvolaris(object):
         # Note that if step_expr OOMs, this tail expression is never executed.
         # We lose the last logs in this scenario.
         #
-        # TODO: Capture hard exit logs in Kubernetes.
+        # TODO: Capture hard exit logs in Nuvolaris Openwhisk.
         cmd_str += "c=$?; %s; exit $c" % BASH_SAVE_LOGS
         # For supporting sandboxes, ensure that a custom script is executed before
         # anything else is executed. The script is passed in as an env var.
@@ -141,7 +141,7 @@ class Nuvolaris(object):
         #    '${METAFLOW_INIT_SCRIPT:+eval \\"${METAFLOW_INIT_SCRIPT}\\"} && %s'
         #    % cmd_str
         #)
-        return shlex.split('bash -c "%s"' % cmd_str)
+        return shlex.split('/bin/bash -c "%s"' % cmd_str)
 
     def launch_job(self, **kwargs):
         self._job = self.create_job(**kwargs).execute()
@@ -240,11 +240,14 @@ class Nuvolaris(object):
         for name, value in env.items():
             job.environment_variable(name, value)
 
-        # Pass AWS credentials as environment_variable
-        session = boto3.Session(profile_name="default")
-        credentials = session.get_credentials()
-        job.environment_variable("AWS_ACCESS_KEY_ID", credentials.access_key)
-        job.environment_variable("AWS_SECRET_ACCESS_KEY", credentials.secret_key)
+        # Pass AWS credentials as environment_variable in a non blocking way
+        try:
+            session = boto3.Session(profile_name="default")
+            credentials = session.get_credentials()
+            job.environment_variable("AWS_ACCESS_KEY_ID", credentials.access_key)
+            job.environment_variable("AWS_SECRET_ACCESS_KEY", credentials.secret_key)
+        except:
+            pass
 
         annotations = {
             "metaflow/user": user,
