@@ -66,4 +66,8 @@ tasks:
   build-and-push:
     - task: docker-build 
     - docker push {{.NUV_MF_PYTHON_IMAGE}}:{{.NUV_MF_PYTHON_TAG}}
+
+  debug:runtime:
+    - |
+      docker run -p 8080:8080 --name go-metaflow --rm -ti --entrypoint=/bin/bash {{.NUV_MF_PYTHON_IMAGE}}:{{.NUV_MF_PYTHON_TAG}}
     

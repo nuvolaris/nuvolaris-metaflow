@@ -141,7 +141,8 @@ class Nuvolaris(object):
         #    '${METAFLOW_INIT_SCRIPT:+eval \\"${METAFLOW_INIT_SCRIPT}\\"} && %s'
         #    % cmd_str
         #)
-        return shlex.split('/bin/bash -c "%s"' % cmd_str)
+        #return shlex.split('/bin/bash -c "%s"' % cmd_str)
+        return shlex.split(cmd_str)
 
     def launch_job(self, **kwargs):
         self._job = self.create_job(**kwargs).execute()

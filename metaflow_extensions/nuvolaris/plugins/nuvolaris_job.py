@@ -84,7 +84,11 @@ class NuvolarisJob(object):
     def create(self):
         # Will deploy the function packages as openwhisk action
         client = self._client.get()
-        self._result = client.deploy_action(self._action_name,self._namespace, self._memory, self._timeout)
+        if client.should_deploy_action(self._action_name,self._namespace, self._memory, self._timeout):
+            self._result = client.deploy_action(self._action_name,self._namespace, self._memory, self._timeout)
+        else:
+            print(f"action {self._action_name} already deployed, reusing it.")
+            self._result = client.get_action_detail(self._action_name,self._namespace)
         return self
 
     def execute(self):

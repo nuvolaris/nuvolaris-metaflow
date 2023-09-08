@@ -29,6 +29,7 @@ packages = [
 python = "^3.9"
 scikit-learn = "1.3.0"
 sagemaker = "2.59.8"
+metaflow = "2.7.14"
 
 [tool.poetry.dev-dependencies]
 ipython = "^7.31.0"
