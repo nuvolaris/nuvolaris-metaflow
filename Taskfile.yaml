@@ -23,7 +23,7 @@ env:
 #vars:
   NUV_MF_PYTHON_TAG: 
     sh: git describe --tags --abbrev=0 2>/dev/null || git rev-parse --short HEAD
-  NUV_MF_PYTHON_IMAGE: ghcr.io/nuvolaris/nuvolaris-metaflow
+  NUV_MF_PYTHON_IMAGE: ghcr.io/nuvolaris/go-nuvolaris-metaflow
     
 tasks:
   install:
@@ -66,4 +66,8 @@ tasks:
   build-and-push:
     - task: docker-build 
     - docker push {{.NUV_MF_PYTHON_IMAGE}}:{{.NUV_MF_PYTHON_TAG}}
+
+  debug:runtime:
+    - |
+      docker run -p 8080:8080 --name go-metaflow --rm -ti --entrypoint=/bin/bash {{.NUV_MF_PYTHON_IMAGE}}:{{.NUV_MF_PYTHON_TAG}}
     

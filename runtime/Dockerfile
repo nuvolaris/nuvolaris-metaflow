@@ -16,7 +16,7 @@
 #
 
 # build go proxy from source
-FROM golang:1.18 AS builder_source
+FROM golang:1.20 AS builder_source
 ARG GO_PROXY_GITHUB_USER=apache
 ARG GO_PROXY_GITHUB_BRANCH=master
 RUN git clone --branch ${GO_PROXY_GITHUB_BRANCH} \
@@ -25,8 +25,8 @@ RUN git clone --branch ${GO_PROXY_GITHUB_BRANCH} \
    mv proxy /bin/proxy
 
 # or build it from a release
-FROM golang:1.18 AS builder_release
-ARG GO_PROXY_RELEASE_VERSION=1.18@1.20.0
+FROM golang:1.20 AS builder_release
+ARG GO_PROXY_RELEASE_VERSION=1.20@1.21.0
 RUN curl -sL \
   https://github.com/apache/openwhisk-runtime-go/archive/{$GO_PROXY_RELEASE_VERSION}.tar.gz\
   | tar xzf -\
@@ -42,27 +42,38 @@ ARG GO_PROXY_BUILD_FROM=release
 RUN apt-get update && apt-get install -y zip \
     && rm -rf /var/lib/apt/lists/*
 
+RUN wget https://golang.org/dl/go1.20.8.linux-amd64.tar.gz
+RUN tar -C /usr/local -xvf go1.20.8.linux-amd64.tar.gz
+RUN rm -Rf go1.20.8.linux-amd64.tar.gz
+ENV PATH=$PATH:/usr/local/go/bin    
+
 # Install common modules for python
 COPY requirements_common.txt requirements_common.txt
 COPY requirements.txt requirements.txt
-RUN pip3 install --upgrade pip six wheel &&\
-    pip3 install --no-cache-dir -r requirements.txt
+RUN pip install --upgrade pip six wheel &&\
+    pip install --no-cache-dir -r requirements.txt
 
-# Install all the common modules used by metaflow
-RUN pip install requests -qqq\
-    pip install awscli boto3\
-    pip install azure-identity azure-storage-blob simple-azure-blob-downloader -qqq\
-    pip install scikit-learn sagemaker
+RUN pip3 install awscli boto3
+RUN pip3 install azure-identity azure-storage-blob simple-azure-blob-downloader
+# Metaflow demo specific dependencies
+RUN pip3 install scikit-learn sagemaker
+
+# Required to ensure metaflow processes are correclty executed
+RUN rm -Rf /usr/bin/python
+RUN rm -Rf /usr/bin/python3
+
+RUN ln -s /usr/local/bin/python /usr/bin/python
+RUN ln -s /usr/local/bin/python /usr/bin/python3
 
 RUN mkdir -p /action
-WORKDIR /
+WORKDIR /action
 
 COPY --from=builder_source /bin/proxy /bin/proxy_source
 COPY --from=builder_release /bin/proxy /bin/proxy_release
 RUN mv /bin/proxy_${GO_PROXY_BUILD_FROM} /bin/proxy
 
 ADD bin/compile /bin/compile
-ADD lib/launcher.py /lib/launcher.py
+ADD lib/launcher.go /lib/launcher.go
 
 RUN chmod 777 /bin/compile
 
@@ -71,7 +82,7 @@ ENV OW_LOG_INIT_ERROR=1
 # the launcher must wait for an ack
 ENV OW_WAIT_FOR_ACK=1
 # using the runtime name to identify the execution environment
-ENV OW_EXECUTION_ENV=openwhisk/action-python-v3.10
+ENV OW_EXECUTION_ENV=openwhisk/action-golang-v1.20
 # compiler script
 ENV OW_COMPILER=/bin/compile
 

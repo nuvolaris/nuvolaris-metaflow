@@ -29,4 +29,5 @@ controller/bin/
 standalone/lib/
 env.sample
 .metaflow/
+metaflow.*/**
 regression_dataset.txt
