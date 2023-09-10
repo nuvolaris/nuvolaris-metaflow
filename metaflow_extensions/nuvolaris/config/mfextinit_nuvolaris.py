@@ -38,7 +38,7 @@ DATASTORE_SYSROOT_S3 = cfg.from_conf("NUVOLARIS_DATASTORE_SYSROOT_S3","s3://mlfl
 
 # CUSTOM ACTION IMAGE LAUNCHER
 NUVOLARIS_METAFLOW_IMAGE = cfg.from_conf("NUVOLARIS_METAFLOW_RUNTIME_IMAGE","ghcr.io/nuvolaris/go-nuvolaris-metaflow:d928f4c")
-NUVOLARIS_METAFLOW_OW_KIND = cfg.from_conf("NUVOLARIS_METAFLOW_RUNTIMEKIND","go:mf_1.20")
+NUVOLARIS_METAFLOW_OW_KIND = cfg.from_conf("NUVOLARIS_METAFLOW_RUNTIMEKIND","go:1.20mf")
 
 ###
 # CONFIGURE: You can override any conda dependencies when a Conda environment is created
