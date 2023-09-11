@@ -41,7 +41,7 @@ class NuvolarisEnvironment(object):
     def get_package_commands(self, code_package_url, datastore_type):
         cmds = [
             BASH_MFLOG,
-            "if [ -d .logs ]; then cd .logs; rm -Rf *; fi",
+            "if [ -d .logs ]; then cd .logs; rm -Rf *; cd ..; fi",
             "mflog 'Setting up task environment.'",
             "if [ -d metaflow ]; then rm -Rf metaflow; fi",
             "mkdir metaflow",
